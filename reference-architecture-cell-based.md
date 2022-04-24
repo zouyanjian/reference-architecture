@@ -1,8 +1,8 @@
-<h1 align="center"> Cell-Based Architecture </center></h1>
-<h3 align="center"> A Decentralized Reference Architecture for Cloud-native Applications </center></h3>
+<h1 align="center"> Cell-Based Architecture </h1>
+<h3 align="center"> A Decentralized Reference Architecture for Cloud-native Applications </h3>
 <p align="center">
 <i>
-Version: Summer-2021<br/>
+Version: Fall-2021<br/>
 </i>
 </p>
 
@@ -12,20 +12,20 @@ Version: Summer-2021<br/>
 
 **_Original Authors_**
 
-+ Asanka Abeysinghe | Chief Technology Evangelist- [WSO2, Inc](https://wso2.com/) | [@asankama](https://twitter.com/asankama) (Summer-2018 - Summer-2021)
++ Asanka Abeysinghe | Chief Technology Evangelist- [WSO2, Inc](https://wso2.com/) | [@asankama](https://twitter.com/asankama) (Summer-2018 - Fall-2021)
 + Paul Fremantle | former CTO and Co-Founder - [WSO2, Inc](https://wso2.com/) | [@pzfreo](https://twitter.com/pzfreo) (Summer-2018 - Spring-2020)
 
 > *This document describes a reference architecture for modern agile digital  enterprises. This reference architecture offers a logical architecture based on a disaggregated cloud-based model that can be instantiated to create an effective and agile approach for digital enterprises, deployed in private, public or hybrid cloud environments. In this paper we present the architecture, the approach to applying this architecture, and existing approaches that fit into this architecture. The architecture defined in this paper can be mapped to current architectures as well as used to define new architectures. It is designed to help move from the “as-is” towards the “to-be”.*
 
 ## Introduction
 
-Enterprise architecture has one main aim-to bring structure and organization to evolving systems, thus enabling better maintainability, flexibility, and agility. Enterprise architects have the unending task of trying to bring order to chaos. Over the past five years, a rapid shift has taken place in the agility of software development and in particular DevOps. As a result, continuous integration and continuous deployment (CI/CD) approaches have dramatically accelerated the time needed for new deployments of software projects from months to weeks to days to hours. In many ways, enterprise architectures have struggled to adjust. This reference architecture aims to enable an agile enterprise by increasing the agility at the project level and take it to the enterprise level.
+Enterprise architecture has one main aim-to bring structure and organization to evolving systems, thus enabling better maintainability, flexibility, and agility. Enterprise architects have the unending task of trying to bring order to chaos. Over the past five years, a rapid shift has taken place in the agility of software development and in particular DevOps. As a result, continuous integration and continuous deployment (CI/CD) approaches have dramatically accelerated the speed of new deployments of software projects from months to weeks to days to hours. In many ways, enterprise architectures have struggled to adjust. This reference architecture aims to enable an agile enterprise by increasing the agility at the project level and take it to the enterprise level.
 
 This architecture is based on experience working across hundreds of projects on building digital systems. It also offers a forward-looking view aimed at addressing emerging challenges. The aim of this architecture is to enhance agility at the enterprise level. We define agility as the ability of an organization to respond effectively and in good time to changes in the business environment, in customer requirements, or in enterprise strategy. Agility is not just about one-time changes. It's about ongoing, repeated adaptation to meet the challenges of the enterprise. In creating agility, we assert that four properties are key:
 
 + **Scalability**, the ability to deal with changing workloads by utilizing available resources and effectively maintaining a service level. Modern cloud infrastructure allows components, such as containers, to be scaled effectively, provided they are designed in the correct manner
 
-+ **Modularity**, is the idea that components of the architecture are versioned, replicable, and have well-defined interfaces. It is about exposing the right interfaces into a versioned system as well as hiding the details of the internal workings.
++ **Modularity**, is the idea that components of the architecture are versioned, replicable, and have well-defined interfaces. It is about exposing the right interfaces into a versioned system as well as hiding the details of the internal workings. Business mirroring with domain-driven design (DDD) is the foundation for defining modularity at the macro level. 
 
 + **Composability**, is about creating a recursive and uniform architecture where new components and capabilities add to the overall platform in a seamless way. For example, adding business logic in a web page makes it hard for other systems to build on top of that logic, whereas adding the same logic to an API allows web applications, mobile apps, and other server-based systems to access that logic.
 
@@ -33,17 +33,17 @@ This architecture is based on experience working across hundreds of projects on 
 
 The rest of the this paper is structured as follows:
 
-+ **Section 1**: Introduces the overall abstractions used.
++ [**Section 1**](#section-1-abstractions): Introduces the overall abstractions used.
 
-+ **Section 2**: Introduces to the units of an enterprise architecture.
++ [**Section 2**](#section-2-cell---the-units-of-an-enterprise-architecture): Introduces to the units of an enterprise architecture.
 
-+ **Section 3**: Discusses structured agility and looks at how the reference architecture augments an iterative architecture.
++ [**Section 3**](#section-3-structured-agility): Discusses structured agility and looks at how the reference architecture augments an iterative architecture.
 
-+ **Section 4**: Defines the new reference architecture. This includes a mapping to a real-world example.
++ [**Section 4**](#section-4-building-an-agile-enterprise-with-the-cell-based-architecture): Defines the new reference architecture. This includes a mapping to a real-world example.
 
-+ **Section 5**: Define the rules that can apply in the design, implementation and deployment of the cells.
++ [**Section 5**](#section-5-cell---recommendations-and-best-practices): Define the rules that can apply in the design, implementation and deployment of the cells.
 
-+ **Appendix-A**: Examines the overall picture by describing the agile business from the business architecture point of view.
++ [**Appendix-A**](#appendix-a-agile-enterprise): Examines the overall picture by describing the agile business from the business architecture point of view.
 
 ## Section 1: Abstractions
 
@@ -58,11 +58,11 @@ The rest of the this paper is structured as follows:
 | Icon | Category | Component |
 |---------|---------|---------|
 |![Component](/media/ra-data-service.png )|Legacy and data services|Databases, Existing systems, Registries and repositories, User stores, Business processes|
-|![Component](/media/ra-microservice.png )|Microservices and serverless components|Core business logic, Aggregation and service composition, Transformation|
+|![Component](/media/ra-microservice.png )|Microservices and serverless components|Custom business logic, Aggregation and service composition, Transformation|
 |![Component](/media/ra-gateway.png)|Gateways and brokers|Exposed APIs, events, and streams, Policy enforcement points, Message brokers, Identity brokers and identity gateways, Sidecars and bridges|
 |![SaaS EPR](/media/ra-saas-epr.png)|External endpoint|Access using APIs, events,  and streams, Cloud systems and SaaS|
-|![Frontend Clients](/media/ra-front-end-clients.png)|Frontend clients|Mobile apps, Reactive apps, API consumers|
-|![Gov and Utils](/media/ra-gov-utils.png)|Governance and utilities|Registry, Observability, Automation tools|
+|![Frontend Clients](/media/ra-front-end-clients.png)|Frontend clients|Mobile apps, Web apps, Portlets, Reactive apps, API consumers|
+|![Gov and Utils](/media/ra-gov-utils.png)|Governance and utilities|Registry, Observability, Automation tools, Lifecycle management|
 
 ## Section 2: Cell - The Units of an Enterprise Architecture
 
@@ -370,7 +370,7 @@ I have been involved in implementing more than 1000 projects using Cell-based, l
 **Employees**: Employees (AKA the digital workforce) are the primary source for creating innovative ideas, design, and implementation. Organizations need to create an open culture and a platform that engages, empowers, and entrusts their employees. This enables employees to build proof of concepts (PoCs), and prototypes, release an minimal viable product (MVP), and identify the product market fit (PMF) rapidly using an iterative approach.
 A podular architecture that results in functional, unit-based pods encourages each pod to be creative, build, run, manage, and support the service offerings that the pod owns. This approach pushes pod members to the edge and allows them to access customers directly. Digital giants in the market today, such as Amazon, eBay, Netflix, and Uber, follow the podular organization structure and operational model to be agile [2].
 
-**Partners**: A business cannot be isolated and operate alone. Connecting with other platforms is essential. We call this ecosystem a partner network. An agile business should be able to connect seamlessly with its partners, share their own business capabilities, and leverage the business capabilities offered by partners. The composability of cell-based architecture increases the ability to expose the business functionality as APIs.  Business APIs act as the digital connectors, enable seamless connectivity, and create a framework to quickly onboard partners. 
+**Partners**: A business cannot be isolated and operate alone. Connecting with other platforms is essential. We call this ecosystem a partner network. An agile business should be able to connect seamlessly with its partners, share their own business capabilities, and leverage the business capabilities offered by partners. The composability of cell-based architecture increases the ability to expose the business functionality as APIs.  Business APIs act as the digital connectors, enable seamless connectivity, and create a framework to quickly onboard partners.
 
 ### Agile Enterprise Platform
 
